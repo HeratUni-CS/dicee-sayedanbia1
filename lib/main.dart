@@ -12,6 +12,7 @@ void main() {
     ),
   ));
 }
+
 class Dicepage extends StatefulWidget {
   const Dicepage({Key? key}) : super(key: key);
 
@@ -19,5 +20,40 @@ class Dicepage extends StatefulWidget {
   State<Dicepage> createState() => _DicepageState();
 }
 
-class _DicepageState {
+class _DicepageState extends State<Dicepage> {
+  int leftDicenumber=1;
+  int rightDicenumber=2;
+  void ChangeDice(){
+    setState(() {
+      rightDicenumber=Random().nextInt(6) +1;
+      leftDicenumber=Random().nextInt(6) + 1;
+    });
+  }
+  @override
+  Widget build(BuildContext context){
+    return Center(
+      child: Row(
+        children:[
+          Expanded(
+            child:TextButton(onPressed: () {
+              ChangeDice();
+            },
+              child: Padding( padding:EdgeInsets.all(16),child:Image.asset('images/Dice$leftDicenumber.png'),),
+            ),
+          ),
+          Expanded(
+            child:TextButton(onPressed: (){
+              ChangeDice();
+            },
+                child:Padding(padding: EdgeInsets.all(16),child: Image.asset('images/Dice$rightDicenumber.png'),
+                )
+
+            ),
+          ),
+
+        ],
+      ),
+    );
+  }
 }
+
